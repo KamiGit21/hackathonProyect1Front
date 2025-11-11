@@ -14,7 +14,7 @@ import { useToast } from "@/hooks/use-toast"
 import { LogIn } from "lucide-react"
 import { DEMO_USERS } from "@/lib/mock-data"
 
-export default function LoginPage() {
+function LoginPage() {
   const router = useRouter()
   const setAuth = useAuthStore((s) => s.setAuth)
   const [email, setEmail] = useState("")
@@ -100,7 +100,12 @@ export default function LoginPage() {
                 {loading ? "Entrando..." : "Entrar"}
               </Button>
             </form>
-
+            <a
+              href={`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"}/auth/google/login`}
+              className="w-full inline-block text-center bg-red-600 hover:bg-red-700 text-white mt-4 py-2 rounded"
+            >
+              Entrar con Google
+            </a>
             <p className="text-center text-slate-400 text-sm mt-6">ARCA LTDA - Human Resources Management System</p>
           </div>
         </Card>
@@ -126,7 +131,11 @@ export default function LoginPage() {
             ))}
           </div>
         </div>
+
+        
       </div>
     </div>
   )
 }
+
+export default LoginPage
